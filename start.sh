@@ -53,6 +53,9 @@ export S3_BUCKET="${S3_BUCKET:-warpdrive}"
 export S3_FORCE_PATH_STYLE="${S3_FORCE_PATH_STYLE:-false}"
 export MAX_FILE_BYTES="${MAX_FILE_BYTES:-26214400}"
 
+# --- business defaults (an empty value would fail upstream's schema) ---
+export BASE_CURRENCY="${BASE_CURRENCY:-USD}"
+
 # --- telemetry off unless the deployer opts in ---
 export DISABLE_TELEMETRY="${DISABLE_TELEMETRY:-true}"
 
