@@ -1,3 +1,5 @@
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/warpdrive?utm_medium=integration&utm_source=button&utm_campaign=warpdrive)
+
 # Warpdrive on Railway
 
 One-click [Railway](https://railway.com) template for [Warpdrive](https://github.com/sneg55/warpdrive), the open-source, self-hosted sales CRM and Pipedrive alternative (MIT).
