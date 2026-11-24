@@ -14,7 +14,7 @@ One-click [Railway](https://railway.com) template for [Warpdrive](https://github
 | **Postgres** | Railway Postgres on its own volume: all CRM data, sessions and jobs. |
 | **Bucket** | A Railway Bucket for attachments, avatars and CSV imports (browser uploads use presigned URLs). |
 
-It fits Railway's Free plan (one volume, one bucket, 0.5 GB per service): the Warpdrive service uses about 280 MB and sizes its Node heaps from the container's memory limit.
+It fits Railway's Free plan (one volume, one bucket, 0.5 GB per service): the Warpdrive service used about 300 MB in our test (browsing every page) and sizes its Node heaps from the container's memory limit.
 
 ## Before you deploy: Google Workspace sign-in
 

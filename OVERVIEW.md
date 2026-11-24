@@ -46,7 +46,7 @@ https://YOUR-DOMAIN/api/gmail/oauth/callback
 
 To use Gmail inside Warpdrive, also enable the Gmail API in that Google Cloud project. Other people from your domain who sign in become regular users. The MCP server for AI assistants is on at `/api/mcp` with OAuth sign-in. Telemetry is off.
 
-It fits Railway's Free plan: the Warpdrive service uses about 280 MB of its 0.5 GB and sizes its Node heaps from the container limit. Updates: this template builds from a GitHub repo, so Railway shows an update notice when we release a new Warpdrive version. Read the repo's CHANGELOG before you apply it.
+It fits Railway's Free plan: the Warpdrive service used about 300 MB of its 0.5 GB in our test and sizes its Node heaps from the container limit. Updates: this template builds from a GitHub repo, so Railway shows an update notice when we release a new Warpdrive version. Read the repo's CHANGELOG before you apply it.
 
 ## Why Deploy Warpdrive on Railway?
 
