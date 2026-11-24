@@ -66,6 +66,7 @@ fi
 APP_HEAP=$((LIMIT_MB * 40 / 100)); WORKER_HEAP=$((LIMIT_MB * 20 / 100)); WS_HEAP=$((LIMIT_MB * 12 / 100))
 [ "$WS_HEAP" -lt 48 ] && WS_HEAP=48
 export UV_THREADPOOL_SIZE="${UV_THREADPOOL_SIZE:-2}"
+export GOMAXPROCS=1
 echo "warpdrive: memory limit ${LIMIT_MB} MB (heaps: app ${APP_HEAP}, worker ${WORKER_HEAP}, ws ${WS_HEAP})"
 
 # --- migrations (locked, so overlapping deploys never run them twice) ---
@@ -79,7 +80,7 @@ trap 'stop_all; exit 0' TERM INT
 start ws env NODE_OPTIONS="--max-old-space-size=${WS_HEAP}" node dist/ws.mjs
 start worker env NODE_OPTIONS="--max-old-space-size=${WORKER_HEAP}" node dist/worker.mjs
 start app env PORT=3001 HOSTNAME=127.0.0.1 NODE_OPTIONS="--max-old-space-size=${APP_HEAP}" node_modules/.bin/next start -p 3001 -H 127.0.0.1
-start caddy caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+start caddy env GOMAXPROCS=1 GOMEMLIMIT=40MiB caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
 
 # BusyBox has no reliable `wait -n`, so poll the children.
 while :; do
