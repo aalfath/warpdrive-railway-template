@@ -34,6 +34,20 @@ esac
 [ -n "${GOOGLE_OAUTH_CLIENT_SECRET:-}" ] || fail "GOOGLE_OAUTH_CLIENT_SECRET is required"
 export ALLOW_FIRST_LOGIN_ADMIN=false
 
+# --- keys: upstream wants base64 of 32 bytes; the template generates 64 hex characters ---
+b64key() {
+  v=$(printenv "$1" || true)
+  case "$v" in
+    "") fail "$1 is required" ;;
+    *[!0-9a-fA-F]*) ;;
+    *) [ ${#v} -eq 64 ] && v=$(node -e 'process.stdout.write(Buffer.from(process.argv[1],"hex").toString("base64"))' "$v") ;;
+  esac
+  export "$1=$v"
+}
+b64key TOKEN_ENCRYPTION_KEY
+export MCP_ENABLED="${MCP_ENABLED:-true}"
+[ "$MCP_ENABLED" = true ] && b64key OAUTH_SIGNING_KEY
+
 # --- storage: a Railway Bucket (virtual-hosted style) by default ---
 export S3_BUCKET="${S3_BUCKET:-warpdrive}"
 export S3_FORCE_PATH_STYLE="${S3_FORCE_PATH_STYLE:-false}"
